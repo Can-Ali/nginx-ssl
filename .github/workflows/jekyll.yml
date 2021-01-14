@@ -34,12 +34,12 @@ jobs:
         sarif_file: ${{ steps.scan.outputs.sarif }}
     
     - name: Deploy Frontend_Alivecore app
-        uses: appleboy/ssh-action@v0.1.2
-        with:
-          host: ${{secrets.SSH_HOST}}
-          username: ec2-user
-          key: ${{ secrets.PEM_SECRET }}
-          port: 22
-          script: |
-            cd nginx-ssl
-            git pull origin master
+      uses: appleboy/ssh-action@v0.1.2
+      with:
+        host: ${{secrets.SSH_HOST}}
+        username: ec2-user
+        key: ${{ secrets.PEM_SECRET }}
+        port: 22
+        script: |
+          cd nginx-ssl
+          git pull origin master
