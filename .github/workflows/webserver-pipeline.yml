@@ -28,5 +28,3 @@ jobs:
           sudo cd ..
           sudo docker-compose down
           sudo docker-compose -up
-
-/home/ec2-user/nginx-ssl/dhparam
