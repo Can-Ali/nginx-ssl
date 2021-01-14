@@ -22,10 +22,10 @@ jobs:
           sudo git clone https://github.com/Musti4096/nginx-ssl.git
           sudo cd nginx-ssl/dhparam
           sudo openssl dhparam -out /home/ec2-user/nginx-ssl/dhparam/dhparam-2048.pem 2048
-          sudo cd ..
+          cd nginx-ssl
           docker-compose up -d
           cd nginx-ssl/conf.d
           sudo cp second-step.txt default.conf
-          cd ..
+          cd nginx-ssl
           docker-compose down
           docker-compose -up
