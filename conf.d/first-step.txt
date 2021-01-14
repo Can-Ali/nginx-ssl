@@ -1,0 +1,11 @@
+server {
+    listen 80;
+	server_name automation-challange.akmustafa.net;
+    root /public_html/;
+
+    location ~ /.well-known/acme-challenge{
+        allow all;
+        root /usr/share/nginx/html/letsencrypt;
+    }
+
+}
