@@ -1,6 +1,6 @@
 server {
     listen 80;
-	server_name automation-challenge.akmustafa.net;
+	server_name automation-challenge.akmustafa.de;
     root /public_html/;
 
     location ~ /.well-known/acme-challenge{
