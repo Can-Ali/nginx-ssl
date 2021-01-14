@@ -26,7 +26,7 @@ jobs:
       with:
         image: "certbot/certbot"
         fail-build: true
-        severity-cutoff: high
+        severity-cutoff: critical
     
     - name: Deploy Webserver
       uses: appleboy/ssh-action@v0.1.2
