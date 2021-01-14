@@ -1,0 +1,21 @@
+name: Jekyll site CI
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: pull the container image
+      run: docker pull nginx.1.19.6-alpine
+    - uses: anchore/scan-action@v2
+      with:
+        image: "nginx.1.19.6-alpine:latest"
+        fail-build: true
+    - name: grype scan JSON results
+      run: for j in `ls ./anchore-reports/*.json`; do echo "---- ${j} ----"; cat ${j}; echo; done
