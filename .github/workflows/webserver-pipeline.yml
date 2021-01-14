@@ -20,4 +20,4 @@ jobs:
         script: |
           cd nginx-ssl/public_html
           sudo rm -f index.html
-          wget https://raw.githubusercontent.com/Musti4096/nginx-ssl/master/public_html/index.html
+          sudo wget https://raw.githubusercontent.com/Musti4096/nginx-ssl/master/public_html/index.html
