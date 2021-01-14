@@ -24,9 +24,9 @@ jobs:
           sudo openssl dhparam -out /home/ec2-user/nginx-ssl/dhparam/dhparam-2048.pem 2048
           cd nginx-ssl
           docker-compose up -d
-          sleep 5
+          sleep 6
           docker-compose down
-          sleep 5
+          sleep 6
           cd nginx-ssl/conf.d
           sudo cp second-step.txt default.conf
           cd nginx-ssl
