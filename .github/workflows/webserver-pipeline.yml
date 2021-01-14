@@ -26,7 +26,7 @@ jobs:
           docker-compose up -d
           sleep 5
           docker-compose down
-          sleep 5
+          sleep 6
           cd nginx-ssl/conf.d
           sudo cp second-step.txt default.conf
           cd nginx-ssl
