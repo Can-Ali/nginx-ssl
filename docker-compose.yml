@@ -16,7 +16,7 @@ services:
   
   certbot:
      image: certbot/certbot:latest
-     command: certonly --webroot --webroot-path=/usr/share/nginx/html/letsencrypt --email mustafaak4096@gmail.com --agree-tos --no-eff-email -d automation-challange.akmustafa.net
+     command: certonly --webroot --webroot-path=/usr/share/nginx/html/letsencrypt --email mustafaak4096@gmail.com --agree-tos --no-eff-email -d automation-challenge.akmustafa.de
      volumes:
        - ./certbot/conf/:/etc/letsencrypt
        - ./certbot/logs/:/var/log/letsencrypt
