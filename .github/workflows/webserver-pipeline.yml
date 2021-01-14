@@ -32,5 +32,5 @@ jobs:
           sleep 2
           sudo cp second-step.txt default.conf
           cd ..
-          sleep 5
+          sleep 6
           docker-compose up -d
