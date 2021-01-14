@@ -1,20 +1,24 @@
-# Automazion Challange (Container-based Nginx Web Server with valid SSL Certificate)
+# Automatization Challange (Container-based Nginx Web Server with valid SSL Certificate)
 
 ## Part 1 - Create a CloudFormation Template
 
 - Create a Cloud Formation template in order to create Docker machine on Amazon Linux 2 AMI with security group allowing SSH, HTTP adn HTTPS ports and save it as `webserver-cfn-template.yml´.
 
+```bash
+aws cloudformation create-stack --stack-name test --template-body file://webserver-cfn-template.yml
+```
+
 - Create a stack on AWS CloudFormation using recently created template.
 
-- After creation completed, create a A-Record on akmustafa.net using AWS Route 53 service console.
-A-Record should be automation-challange.akmustafa.net
+- After creation completed, create a A-Record on akmustafa.net hosted zone using AWS Route 53 service console.
+A-Record should be 'automation-challange.akmustafa.net'.
 
 -  After that create a secret on our https://github.com/Musti4096/nginx-ssl.git GitHub account using server public ip address and
 ssh pem key, in order to connect our server using SSH connection. This step is critical for CI/CD pipeline on GitHub Actions.
 
 ## Part 2 - Create a NGINX Docker container files
 
-- Create a docker-compose.yml file for nginx server.
+- Create a 'docker-compose.yml' file for nginx server.
 
 ```yml
 version: '3.4'
@@ -139,7 +143,8 @@ that flows.
  
 - We can create a CI/CD pipeline using GitHub Actions. First, we should click Actions button on our nginx-ssl repository,
 then choose a related pipeline options. Then .github/workflows directory automatically created and we can update our
-pipeline yml file as follows.
+pipeline yml file as follows. In that workflow, first our code pull related container images from DockerHub, Anchor Container
+Scan tool works for vulnerability scanning. 
 
 ```yml
 name: WebServer Deployment Pipeline
@@ -246,5 +251,5 @@ jobs:
         script: |
           cd nginx-ssl/public_html
           sudo rm -f index.html
-          wget https://raw.githubusercontent.com/Musti4096/nginx-ssl/master/public_html/index.html
+          sudo wget https://raw.githubusercontent.com/Musti4096/nginx-ssl/master/public_html/index.html
 ```

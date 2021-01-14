@@ -10,6 +10,24 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - uses: actions/checkout@v2
+    - name: pull the container image
+      run: docker pull nginx:1.19.6-alpine
+    - uses: anchore/scan-action@v2
+      with:
+        image: "nginx:1.19.6-alpine"
+        fail-build: true
+        severity-cutoff: critical
+    
+    - uses: actions/checkout@v2
+    - name: pull certbot container image
+      run: docker pull certbot/certbot
+    - uses: anchore/scan-action@v2
+      with:
+        image: "certbot/certbot"
+        fail-build: true
+        severity-cutoff: critical
+
     - name: Deploy Webserver
       uses: appleboy/ssh-action@v0.1.2
       with:
@@ -18,6 +36,18 @@ jobs:
         key: ${{ secrets.PEM_SECRET }}
         port: 22
         script: |
-          cd nginx-ssl/public_html
-          sudo rm -f index.html
-          sudo wget https://raw.githubusercontent.com/Musti4096/nginx-ssl/master/public_html/index.html
+          sudo git clone https://github.com/Musti4096/nginx-ssl.git
+          sudo cd nginx-ssl/dhparam
+          sudo openssl dhparam -out /home/ec2-user/nginx-ssl/dhparam/dhparam-2048.pem 2048
+          cd nginx-ssl/
+          docker-compose up -d
+          sleep 6
+          docker-compose down
+          sleep 6
+          pwd
+          cd conf.d/
+          sleep 2
+          sudo cp second-step.txt default.conf
+          cd ..
+          sleep 6
+          docker-compose up -d

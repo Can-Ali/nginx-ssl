@@ -1,17 +1,1 @@
-    - uses: actions/checkout@v2
-    - name: pull the container image
-      run: docker pull nginx:1.19.6-alpine
-    - uses: anchore/scan-action@v2
-      with:
-        image: "nginx:1.19.6-alpine"
-        fail-build: true
-        severity-cutoff: critical
-    
-    - uses: actions/checkout@v2
-    - name: pull certbot container image
-      run: docker pull certbot/certbot
-    - uses: anchore/scan-action@v2
-      with:
-        image: "certbot/certbot"
-        fail-build: true
-        severity-cutoff: critical
+aws cloudformation create-stack --stack-name test --template-body file://webserver-cfn-template.yml
