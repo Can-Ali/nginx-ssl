@@ -68,7 +68,7 @@ sudo openssl dhparam -out /home/ec2-user/nginx-ssl/dhparam/dhparam-2048.pem 2048
 ```text
 server {
     listen 80;
-	server_name automation-challange.akmustafa.net;
+	server_name automation-challenge.akmustafa.net;
     root /public_html/;
 
     location ~ /.well-known/acme-challenge{
@@ -91,7 +91,7 @@ in order to redirect HTTP traffic to HTTPS.
 ```text
 server {
     listen 80;
-	server_name automation-challange.akmustafa.net;
+	server_name automation-challenge.akmustafa.net;
     root /public_html/;
 
     location ~ /.well-known/acme-challenge{
@@ -100,19 +100,19 @@ server {
     }
 
         location / {
-        return 301 https://automation-challange.akmustafa.net$request_uri;
+        return 301 https://automation-challenge.akmustafa.net$request_uri;
     }
 }
 
 server {
      listen 443 ssl http2;
-     server_name automation-challange.akmustafa.net;
+     server_name automation-challenge.akmustafa.net;
      root /public_html/;
 
      ssl on;
      server_tokens off;
-     ssl_certificate /etc/nginx/ssl/live/automation-challange.akmustafa.net/fullchain.pem;
-     ssl_certificate_key /etc/nginx/ssl/live/automation-challange.akmustafa.net/privkey.pem;
+     ssl_certificate /etc/nginx/ssl/live/automation-challenge.akmustafa.net/fullchain.pem;
+     ssl_certificate_key /etc/nginx/ssl/live/automation-challenge.akmustafa.net/privkey.pem;
      ssl_dhparam /etc/nginx/dhparam/dhparam-2048.pem;
      
      ssl_buffer_size 8k;
@@ -133,7 +133,7 @@ server {
 docker-compose up -d
 ```
 
-- Now we can reach our index.html file under automation-challange.akmustafa.net address with valid TLS certificate.
+- Now we can reach our index.html file under automation-challenge.akmustafa.net address with valid TLS certificate.
 
 
 ## Part 3 - Automate deploying steps and scanning docker container using GitHub Actions
@@ -206,7 +206,7 @@ jobs:
 secrets and on our A-Record.
 
 - Then we push our code on master branch. In couple of minutes later, we can reach our webserver under
-automation-challange.akmustafa.net address with valid TLS certificate.
+automation-challenge.akmustafa.net address with valid TLS certificate.
 
 - After successfully create our server, we should update our CI/CD pipeline yaml file as in follows, in order to change just our web site code. 
 
