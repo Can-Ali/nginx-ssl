@@ -1,4 +1,4 @@
-- uses: actions/checkout@v2
+    - uses: actions/checkout@v2
     - name: pull the container image
       run: docker pull nginx:1.19.6-alpine
     - uses: anchore/scan-action@v2
