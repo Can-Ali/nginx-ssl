@@ -43,7 +43,7 @@ jobs:
           docker-compose up -d
           sleep 6
           docker-compose down
-          sleep 6
+          sleep 5
           pwd
           cd conf.d/
           sleep 2
