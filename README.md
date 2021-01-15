@@ -5,7 +5,7 @@
 - Create a Cloud Formation template in order to create Docker machine on Amazon Linux 2 AMI with security group allowing SSH, HTTP adn HTTPS ports and save it as `webserver-cfn-template.yml´.
 
 ```bash
-aws cloudformation create-stack --stack-name test --template-body file://webserver-cfn-template.yml
+aws cloudformation create-stack --stack-name nginx-webserver --template-body file://webserver-cfn-template.yml
 ```
 
 - Create a stack on AWS CloudFormation using recently created template.
